@@ -38,10 +38,21 @@ object Streams extends App :
       cons(init, iterate(next(init))(next))
 
     // Task 6
-
     def takeWhile[A](stream: Stream[A])(pred: A => Boolean): Stream[A] = stream match
       case Cons(head, tail) if pred(head()) => cons(head(), takeWhile(tail())(pred))
       case _ => Empty()
+
+    // Task 7
+    def fill[A](n: Int)(k: A): Stream[A] = n match
+      case n if n > 0 => cons(k, fill(n - 1)(k))
+      case _ => Empty()
+    
+    def pell(): Stream[Int] = Stream.map(iterate(0)(_ + 1))(pell_number)
+
+    private def pell_number(n: Int): Int = n match
+      case n if n == 0 => 0
+      case n if n == 1 => 1
+      case _ => 2 * pell_number(n - 1) + pell_number(n - 2)
 
   end Stream
 
@@ -56,3 +67,5 @@ object Streams extends App :
 
   lazy val corec: Stream[Int] = Stream.cons(1, corec) // {1,1,1,..}
   println(Stream.toList(Stream.take(corec)(10))) // [1,1,..,1]
+
+  println(Stream.toList(Stream.take(Stream.pell())(10)))

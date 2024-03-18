@@ -10,3 +10,4 @@ object Task3:
             foldLeft(tail)(res)(accumulator)
         }
         case _ => start
+

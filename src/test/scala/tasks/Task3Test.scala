@@ -11,24 +11,9 @@ import u02.AlgebraicDataTypes.Person
 
 
 class Task3Test {
-    val teachers = Cons(
-        Teacher("m", "math"),
-        Cons(
-            Teacher("e", "english"),
-            Cons(
-                Teacher("p", "programming"),
-                Nil()
-            )
-        )
-    )
+    val teachers = Cons(Teacher("m", "math"), Cons(Teacher("e", "english"), Cons(Teacher("p", "programming"), Nil())))
 
-    val students = Cons(
-        Student("a", 2000),
-        Cons(
-            Student("b", 2001),
-            Nil()
-        )
-    )
+    val students = Cons(Student("a", 2000), Cons(Student("b", 2001), Nil()))
 
     val expectedCourses = Cons("math", Cons("english", Cons("programming", Nil())))
 

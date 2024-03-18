@@ -10,7 +10,7 @@ import tasks.Task2.teacherCourses
 import u02.AlgebraicDataTypes.Person
 
 
-class Task2Test {
+class Task3Test {
     val teachers = Cons(
         Teacher("m", "math"),
         Cons(

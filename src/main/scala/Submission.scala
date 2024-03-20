@@ -5,8 +5,8 @@ object Task1Sub:
     import u03.Optionals.Optional
     import u03.Optionals.Optional.*
 
-    def zip[A, B](first: Sequence[A], second: Sequence[B]): Sequence[(A, B)] = (first, second) match
-      case (Sequence.Cons(h1, t1), Cons(h2, t2)) => Cons((h1, h2), zip(t1, t2))
+    def zip[A, B](l1: Sequence[A], l2: Sequence[B]): Sequence[(A, B)] = (l1, l2) match
+      case (Cons(h1, t1), Cons(h2, t2)) => Cons((h1, h2), zip(t1, t2))
       case _ => Nil()
 
     def take[A](l: Sequence[A])(n: Int): Sequence[A] = l match
@@ -44,8 +44,8 @@ object Task3Sub:
     import u02.Modules.Person
     import u02.Modules.Person.*
 
-    def teacherCourses(l: Sequence[Person]): Sequence[String] = flatMap(l)(x => x match
-            case Teacher(name, course) => Cons(course, Nil())
+    def teacherCourses(l: Sequence[Person]): Sequence[String] = flatMap(l)(_ match
+            case Teacher(_, course) => Cons(course, Nil())
             case _ => Nil()
         )
 
@@ -55,8 +55,8 @@ object Task4Sub:
 
     def foldLeft[A, B](l: Sequence[A])(start: B)(acc: (B, A) => B): B = l match
         case Cons(head, tail) => {
-            val res = acc(start, head)
-            foldLeft(tail)(res)(acc)
+            val curr = acc(start, head)
+            foldLeft(tail)(curr)(acc)
         }
         case _ => start
 
